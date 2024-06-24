@@ -1,0 +1,41 @@
+body{
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-image: url('/assets/images/BG.png');
+    background-size: cover; 
+    background-position: center; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: hidden;
+
+}
+
+header h1{
+    font-size: 25px;
+    margin: 20px;
+}
+#logo{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 8%;
+    width: 70vw;
+    justify-content: center;
+}
+
+article figure figcaption{
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+main{
+    display: flex;
+    margin: 40px;
+    flex: 1;
+}
+footer{
+    text-align: center;
+    padding: 20px;
+}
