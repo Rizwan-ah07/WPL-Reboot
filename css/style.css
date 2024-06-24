@@ -9,7 +9,6 @@ body{
     flex-direction: column;
     min-height: 100vh;
     overflow-y: hidden;
-
 }
 
 header h1{
@@ -25,11 +24,18 @@ header h1{
     justify-content: center;
 }
 
+article figure img:hover{
+    transform: scale(1.1);
+    transition: 0.2s;
+}
 article figure figcaption{
     text-align: center;
     margin: 10px;
     padding: 10px;
+    border: 1px solid;
+    margin-bottom: 20px;
 }
+
 main{
     display: flex;
     margin: 40px;
@@ -38,4 +44,10 @@ main{
 footer{
     text-align: center;
     padding: 20px;
+}
+
+@media (max-width: 768px) {
+    body{
+        overflow: scroll;
+    }
 }
