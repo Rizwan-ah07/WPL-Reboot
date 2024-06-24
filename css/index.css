@@ -1,0 +1,63 @@
+body{
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-image: url('/assets/images/BG.png');
+    background-size: cover; 
+    background-position: center; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-y: hidden;
+}
+
+header h1{
+    font-size: 25px;
+    margin: 20px;
+}
+#logo{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 8%;
+    width: 70vw;
+    justify-content: center;
+}
+article figure a{
+    text-decoration: none;
+    color: #fff;
+}
+
+article figure a:hover{
+    text-decoration: none;
+    color: #aaaaaa;
+}
+
+article figure img:hover{
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+article figure figcaption{
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid;
+    margin-bottom: 20px;
+}
+
+main{
+    display: flex;
+    margin: 40px;
+    flex: 1;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    body{
+        overflow: scroll;
+    }
+}
