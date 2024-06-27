@@ -6,11 +6,21 @@ body {
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    overflow-y: hidden;
     display: flex;
     flex-direction: column;
 }
 
+#club-body{
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  background-image: url('/assets/images/test.webp'); 
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 header h1{
     font-size: 25px;
     margin: 20px;
@@ -29,7 +39,7 @@ footer {
 }
 
 
-#leagues{
+#leagues, #clubs{
     color: rgb(255, 255, 255);
     padding: 20px;
     backdrop-filter: blur(10px); 
@@ -40,16 +50,11 @@ footer {
     
 }
 
-#leagues article{
+#leagues article, #clubs article{
     margin: 15px;
     padding: 3px;
     border: black 1px solid;
 }
-
-
-
-
-
 
 /* Hamburger Menu */
 
