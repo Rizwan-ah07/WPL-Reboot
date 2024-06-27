@@ -1,0 +1,109 @@
+body {
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-image: url('/assets/images/league-BG.webp'); 
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+header h1{
+    font-size: 25px;
+    margin: 20px;
+}
+
+main {
+    display: flex;
+    margin: 40px;
+    flex: 1;
+    justify-content: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+
+#leagues{
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    backdrop-filter: blur(10px); 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#leagues article{
+    margin: 15px;
+    padding: 3px;
+    border: black 1px solid;
+}
+
+
+
+
+
+
+/* Hamburger Menu */
+
+.hamburger {
+    background: none;
+    border: 0px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+  }
+   
+  .nav-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(44, 55, 64, 0.5); 
+    backdrop-filter: blur(10px); 
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 999;
+  }
+
+  .nav-menu ul li {
+    padding: 15px 0; 
+    border: 1px dotted;
+}
+   
+  .nav-menu ul {
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+    margin: 10px;
+  }
+   
+  .nav-menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    margin: 30px;
+  }
+   
+  .nav-menu a:hover {
+    color: #f1f1f1;
+  }
+   
+  .nav-menu.open {
+    width: 350px;
+  }
