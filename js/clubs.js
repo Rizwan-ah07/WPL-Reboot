@@ -2,9 +2,9 @@ const User_ID = "4ef6b7b4-a42d-4856-b5fb-18c57ec6f107";
 const base_api_url = "https://futdb.app/api/clubs";
 let clubs = [];
 let pageCurrent = 1;
-const pageTotal = 4; // total number of pages
+const pageSize = 27; 
 
-function fetchClubs(page) {
+async function fetchClubs(page) {
     return fetch(`${base_api_url}?page=${page}`, {
         method: 'GET',
         headers: {
@@ -27,14 +27,24 @@ function fetchClubs(page) {
 }
 
 async function fetchAllClubs() {
-    for (let page = 1; page <= pageTotal; page++) {
+    const totalPages = Math.ceil(748 / pageSize); 
+    for (let page = 1; page <= totalPages; page++) {
         await fetchClubs(page);
     }
 
     clubs.sort((a, b) => a.id - b.id);
+    displayPage(1);
+}
 
+function displayPage(page) {
     const clubsContainer = document.getElementById('clubs');
-    clubs.filter(club => club.id !== 60).forEach(club => {
+    clubsContainer.innerHTML = '';
+
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    const currentClubs = clubs.slice(start, end);
+
+    currentClubs.filter(club => club.id !== 60).forEach(club => {
         const img_url = `https://futdb.app/api/clubs/${club.id}/image`;
 
         fetch(img_url, {
@@ -68,6 +78,28 @@ async function fetchAllClubs() {
             `;
         });
     });
+
+
+    document.getElementById('current-page').textContent = pageCurrent;
+    document.getElementById('prev-page').disabled = pageCurrent === 1;
+    document.getElementById('next-page').disabled = pageCurrent === Math.ceil(clubs.length / pageSize);
 }
+
+function nextPage() {
+    if (pageCurrent < Math.ceil(clubs.length / pageSize)) {
+        pageCurrent++;
+        displayPage(pageCurrent);
+    }
+}
+
+function prevPage() {
+    if (pageCurrent > 1) {
+        pageCurrent--;
+        displayPage(pageCurrent);
+    }
+}
+
+document.getElementById('next-page').addEventListener('click', nextPage);
+document.getElementById('prev-page').addEventListener('click', prevPage);
 
 fetchAllClubs();

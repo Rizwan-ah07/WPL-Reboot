@@ -56,6 +56,10 @@ footer {
     border: black 1px solid;
 }
 
+#pagination-controls{
+  padding-bottom: 10px;
+}
+
 /* Hamburger Menu */
 
 .hamburger {

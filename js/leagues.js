@@ -2,9 +2,9 @@ const User_ID = "4ef6b7b4-a42d-4856-b5fb-18c57ec6f107";
 const base_api_url = "https://futdb.app/api/leagues";
 let leagues = [];
 let pageCurrent = 1;
-const pageTotal = 4; // total number of pages
+const pageSize = 18; // number of leagues per page
 
-function fetchLeagues(page) {
+async function fetchLeagues(page) {
     return fetch(`${base_api_url}?page=${page}`, {
         method: 'GET',
         headers: {
@@ -27,14 +27,24 @@ function fetchLeagues(page) {
 }
 
 async function fetchAllLeagues() {
-    for (let page = 1; page <= pageTotal; page++) {
+    const totalPages = Math.ceil(27 / pageSize); 
+    for (let page = 1; page <= totalPages; page++) {
         await fetchLeagues(page);
     }
 
     leagues.sort((a, b) => a.id - b.id);
+    displayPage(1);
+}
 
+function displayPage(page) {
     const leaguesContainer = document.getElementById('leagues');
-    leagues.filter(league => !league.name.includes('WC')).filter(league => league.id !== 2179).forEach(league => {
+    leaguesContainer.innerHTML = '';
+
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    const currentLeagues = leagues.slice(start, end);
+
+    currentLeagues.filter(league => !league.name.includes('WC')).filter(league => league.id !== 2179).forEach(league => {
         const img_url = `https://futdb.app/api/leagues/${league.id}/image`;
 
         fetch(img_url, {
@@ -68,6 +78,28 @@ async function fetchAllLeagues() {
             `;
         });
     });
+
+
+    document.getElementById('current-page').textContent = pageCurrent;
+    document.getElementById('prev-page').disabled = pageCurrent === 1;
+    document.getElementById('next-page').disabled = pageCurrent === Math.ceil(leagues.length / pageSize);
 }
+
+function nextPage() {
+    if (pageCurrent < Math.ceil(leagues.length / pageSize)) {
+        pageCurrent++;
+        displayPage(pageCurrent);
+    }
+}
+
+function prevPage() {
+    if (pageCurrent > 1) {
+        pageCurrent--;
+        displayPage(pageCurrent);
+    }
+}
+
+document.getElementById('next-page').addEventListener('click', nextPage);
+document.getElementById('prev-page').addEventListener('click', prevPage);
 
 fetchAllLeagues();
