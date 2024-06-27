@@ -16,16 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 const User_ID = "4ef6b7b4-a42d-4856-b5fb-18c57ec6f107";
 const api_url = "https://futdb.app/api/leagues";
+
 const data = {};
-
-fetch(`https://futdb.app/api/leagues/${league.id}/image`, {
-    method: 'GET',
-    headers: {
-        'accept': 'image/png',
-        'X-AUTH-TOKEN': User_ID
-    }
-})
-
 
 fetch(api_url, {
     method: 'GET',
@@ -35,8 +27,6 @@ fetch(api_url, {
     },
 })
 
-
-
 .then(response => {
     if (!response.ok) {
         throw new Error(response.statusText);
@@ -44,18 +34,16 @@ fetch(api_url, {
     return response.json();
 })
 
-
-
 .then(data => {
     console.log(data.items);
     const leagues = document.getElementById('leagues');
     data.items.forEach(league => {
-        const imageUrl = `https://futdb.app/api/leagues/${league.id}/image`;
         leagues.innerHTML += `
             <article>
-                <img src="${imageUrl}" alt="${league.name}" />
-                <p>${league.name}</p>
-            </article>
+                <p>
+                    ${league.name}
+                </p>
+            </artuicle>
         `;
     });
 })
